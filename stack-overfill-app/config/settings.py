@@ -51,7 +51,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'stack_overfill_app.urls'
+ROOT_URLCONF = 'config.urls'
 
 TEMPLATES = [
     {
@@ -81,8 +81,8 @@ DATABASES = {
         'NAME': 'stack-overfill',
         'USER': 'timothy',
         'PASSWORD': 'plati442',
-        'HOST': '120.0.0.1',
-        'PORT': '4532',
+        'HOST': '127.0.0.1',
+        'PORT': '5432',
     }
 }
 
