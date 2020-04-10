@@ -1,9 +1,9 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.views.generic import CreateView
+from django.views.generic import CreateView, DetailView
 from django.http import HttpResponseBadRequest
 
 from .models import Question
-from .forms import QuestionForm
+from .forms import QuestionForm, AnswerForm, AnswerAcceptanceForm
 
 # Create your views here.
 
@@ -31,3 +31,22 @@ class AskQuestionView(LoginRequiredMixin, CreateView):
             return self.render_to_response(context=context)     # *****
         else:
             return HttpResponseBadRequest
+
+
+class QuestionDetailView(DetailView):
+    model = Question
+
+    ACCEPT_FORM = AnswerAcceptanceForm(initial={'accepted': True})
+    REJECT_FORM = AnswerAcceptanceForm(initial={'accepted': False})
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context.update(
+            {'answer_form': AnswerForm(initial={'user': self.request.user.id, 'question': self.object.id})}
+        )
+        if self.object.can_accept_answers(self.request.user):
+            context.update(
+                {'accept_form': self.ACCEPT_FORM, 'reject_form': self.ACCEPT_FORM}
+            )
+        else:
+            return context
