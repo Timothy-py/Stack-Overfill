@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block title %}
+    {{question.title}} - {{block.super}}
+{% endblock title %}
+
+{% block body %}
+    {% include "core_app/common/display_question.html" %}
+    {% include "core_app/common/list_answers.html" %}
+
+    {% if user.is_authenticated %}
+        {% include "core_app/common/question_post_answer.html" %}
+    {% else %}
+        <div>
+            Login to post answers.
+        </div>
+    {% endif %}
+{% endblock body %}

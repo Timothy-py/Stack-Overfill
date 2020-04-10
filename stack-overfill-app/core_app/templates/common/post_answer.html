@@ -1,0 +1,15 @@
+{% load crispy_forms_tags %}
+
+<div>
+    <h3>Post your answer</h3>
+
+    <form method="post" action="{% url 'core_app:answer_question' pk=question.id %}">{% csrf_token %}
+        {{answer_form | crispy}}
+        <button type="submit" name="action" value="PREVIEW">
+            Preview
+        </button>
+        <button type="submit" name="action" value="SAVE">
+            Answer
+        </button>
+    </form>
+</div>
