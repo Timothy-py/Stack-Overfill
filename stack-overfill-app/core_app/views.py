@@ -18,7 +18,7 @@ class AskQuestionView(LoginRequiredMixin, CreateView):
         return {'user': self.request.user.id}
 
     def form_valid(self, form):
-        action = self.request.POST.get('action')    # *******
+        action = self.request.POST.get('action')    # get the value returned by the form<button> in the template
         if action == 'SAVE':
             # save and redirect as usual.
             return super().form_valid(form)
@@ -28,6 +28,6 @@ class AskQuestionView(LoginRequiredMixin, CreateView):
                     title=form.cleaned_data(['title']),
                 )
             context = self.get_context_data(preview=preview)
-            return self.render_to_response(context=context)
+            return self.render_to_response(context=context)     # *****
         else:
             return HttpResponseBadRequest
