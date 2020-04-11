@@ -35,18 +35,25 @@ class AskQuestionView(LoginRequiredMixin, CreateView):
 
 class QuestionDetailView(DetailView):
     model = Question
+    context_object_name = 'question'
 
     ACCEPT_FORM = AnswerAcceptanceForm(initial={'accepted': True})
     REJECT_FORM = AnswerAcceptanceForm(initial={'accepted': False})
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
+
+        # add answer form to the context and pre-filled the user and question field
         context.update(
             {'answer_form': AnswerForm(initial={'user': self.request.user.id, 'question': self.object.id})}
         )
+
+        # if the current user is same as the user that created the question being displayed;
+        # load the accept and reject form.
         if self.object.can_accept_answers(self.request.user):
+            # if self.model.can_accept_answers(user=self.request.user):
             context.update(
-                {'accept_form': self.ACCEPT_FORM, 'reject_form': self.ACCEPT_FORM}
+                {'accept_form': self.ACCEPT_FORM, 'reject_form': self.REJECT_FORM}
             )
         else:
             return context
