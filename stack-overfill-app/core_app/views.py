@@ -1,6 +1,8 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.views.generic import CreateView, DetailView, UpdateView
+from django.views.generic import CreateView, DetailView, UpdateView, DayArchiveView, RedirectView
 from django.http import HttpResponseBadRequest
+from django.utils.timezone import timezone
+from django.shortcuts import reverse
 
 from .models import Question, Answer
 from .forms import QuestionForm, AnswerForm, AnswerAcceptanceForm
@@ -100,4 +102,25 @@ class UpdateAnswerAcceptance(LoginRequiredMixin, UpdateView):
     def form_invalid(self, form):
         return HttpResponseBadRequest(
             redirect_to=self.object.question.get_absolute_url()
+        )
+
+
+# The DayArchiveView is used to Listing all of objects published on a given day.
+class DailyQuestionList(DayArchiveView):
+    queryset = Question.objects.all()
+    date_field = 'created'
+    month_format = '%m'
+    allow_empty = True      # *****
+
+
+class TodaysQuestionList(RedirectView):
+    def get_redirect_url(self, *args, **kwargs):
+        today = timezone.now()
+        return reverse(
+            'core_app:daily_questions',
+            kwargs={
+                'day': today.day,
+                'month': today.month,
+                'year': today.year,
+            }
         )
