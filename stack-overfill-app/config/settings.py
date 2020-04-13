@@ -130,3 +130,7 @@ STATIC_URL = '/static/'
 
 # django crispy forms
 CRISPY_TEMPLATE_PACK = 'bootstrap4'     # tells crispy to use Bootstrap4 template pack.
+
+LOGIN_URL = 'user_app:login'
+LOGIN_REDIRECT_URL = 'core_app:home_page'
+LOGOUT_REDIRECT_URL = 'core_app:home_page'
