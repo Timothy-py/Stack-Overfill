@@ -34,6 +34,7 @@ INSTALLED_APPS = [
     'core_app',
     'user_app',
     'crispy_forms',
+    'markdownify',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
