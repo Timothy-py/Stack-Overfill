@@ -29,7 +29,8 @@ ALLOWED_HOSTS = []
 
 
 # Application definition
-
+# NOTE: always install the user app before/above the admin app, as they will both define the login templates.
+# The app that comes first will have its login template resolved first.
 INSTALLED_APPS = [
     'core_app',
     'user_app',
