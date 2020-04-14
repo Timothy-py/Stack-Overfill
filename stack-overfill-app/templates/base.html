@@ -1,7 +1,7 @@
-{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    {% load static %}
     <meta charset="UTF-8">
     <title>
         {% block title %}
@@ -10,9 +10,32 @@
     </title>
 </head>
 <body>
-    <a href="/">Stack Overfill</a>
-    {% block body %}
-
-    {% endblock %}
+        <nav>
+            <a href="/">Stack Overfill</a>
+            <ul>
+                <li>
+                    <a href="{% url 'core_app:ask %}">Ask</a>
+                </li>
+                <li>
+                    <a href="{% url 'core_app:index %}">Today's Questions</a>
+                </li>
+                {% if user.is_authenticated %}
+                    <li>
+                        <a href="{% url 'user:logout' %}">Logout</a>
+                    </li>
+                {% else %}
+                    <li>
+                        <a href="{% url 'user:login' %}">Login</a>
+                    </li>
+                    <li>
+                        <a href="{% url 'user:register' %}">Register</a>
+                    </li>
+                {% endif %}
+            </ul>
+        </nav>
+        <div>
+            {% block body %}
+            {% endblock body %}
+        </div>
 </body>
 </html>

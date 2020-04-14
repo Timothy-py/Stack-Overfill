@@ -1,5 +1,5 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.views.generic import CreateView, DetailView, UpdateView, DayArchiveView, RedirectView
+from django.views.generic import CreateView, DetailView, UpdateView, DayArchiveView, RedirectView, TemplateView
 from django.http import HttpResponseBadRequest
 from django.utils.timezone import timezone
 from django.shortcuts import reverse
@@ -8,6 +8,10 @@ from .models import Question, Answer
 from .forms import QuestionForm, AnswerForm, AnswerAcceptanceForm
 
 # Create your views here.
+
+
+class HomePageView(TemplateView):
+    template_name = 'core_app/home_page.html'
 
 
 # The CreateView render the template for GET requests and validate the form on POST requests.
