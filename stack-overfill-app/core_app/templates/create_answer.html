@@ -2,12 +2,12 @@
 {% load markdownify %}
 
 {% block body %}
-    {% include "core_app/common/display_question.html" %}
+    {% include "common/display_question.html" %}
 
     {% if preview %}
         <div>Answer Preview</div>
         <div>{{preview|markdownify}}</div>
     {% endif %}
 
-    {% include "core_app/common/post_answer.html" with answer_form=form %}
+    {% include "common/post_answer.html" with answer_form=form %}
 {% endblock %}

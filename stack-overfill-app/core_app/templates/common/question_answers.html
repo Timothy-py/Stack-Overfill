@@ -15,8 +15,8 @@
                         Reject
                     </button>
                 </form>
-            {% elif accept_form %}{% csrf_token %}
-                <form method="post" action="{% url 'core_app:update_answer_acceptance' pk=answer.id %}">
+            {% elif accept_form %}
+                <form method="post" action="{% url 'core_app:update_answer_acceptance' pk=answer.id %}">{% csrf_token %}
                     {{accept_form}}
                     <button type="submit">
                         Accept
