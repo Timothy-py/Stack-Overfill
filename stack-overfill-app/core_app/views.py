@@ -17,7 +17,7 @@ class HomePageView(TemplateView):
 # The CreateView render the template for GET requests and validate the form on POST requests.
 class AskQuestionView(LoginRequiredMixin, CreateView):
     form_class = QuestionForm
-    template_name = 'core_app/ask.html'
+    template_name = 'ask.html'
 
     # this method ensures the user field is pre-filled with the current user that makes the request.
     def get_initial(self):
@@ -67,7 +67,7 @@ class QuestionDetailView(DetailView):
 
 class CreateAnswerView(LoginRequiredMixin, CreateView):
     form_class = AnswerForm
-    template_name = 'core_app/create_answer.html'
+    template_name = 'create_answer.html'
 
     def get_initial(self):
         return {
