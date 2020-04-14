@@ -11,24 +11,24 @@
 </head>
 <body>
         <nav>
-            <a href="/">Stack Overfill</a>
+            <a href="">Stack Overfill</a>
             <ul>
                 <li>
-                    <a href="{% url 'core_app:ask %}">Ask</a>
+                    <a href="{% url 'core_app:ask_question' %}">Ask</a>
                 </li>
                 <li>
-                    <a href="{% url 'core_app:index %}">Today's Questions</a>
+                    <a href="{% url 'core_app:home_page' %}">Today's Questions</a>
                 </li>
                 {% if user.is_authenticated %}
                     <li>
-                        <a href="{% url 'user:logout' %}">Logout</a>
+                        <a href="{% url 'user_app:logout' %}">Logout</a>
                     </li>
                 {% else %}
                     <li>
-                        <a href="{% url 'user:login' %}">Login</a>
+                        <a href="{% url 'user_app:login' %}">Login</a>
                     </li>
                     <li>
-                        <a href="{% url 'user:register' %}">Register</a>
+                        <a href="{% url 'user_app:register' %}">Register</a>
                     </li>
                 {% endif %}
             </ul>

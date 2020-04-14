@@ -11,7 +11,7 @@ from .forms import QuestionForm, AnswerForm, AnswerAcceptanceForm
 
 
 class HomePageView(TemplateView):
-    template_name = 'core_app/home_page.html'
+    template_name = 'home_page.html'
 
 
 # The CreateView render the template for GET requests and validate the form on POST requests.
