@@ -31,7 +31,7 @@ class AskQuestionView(LoginRequiredMixin, CreateView):
         elif action == 'PREVIEW':
             preview = Question(
                     question=form.cleaned_data['question'],
-                    title=form.cleaned_data(['title']),
+                    title=form.cleaned_data['title'],
                 )
             context = self.get_context_data(preview=preview)
             return self.render_to_response(context=context)     # *****
@@ -41,7 +41,8 @@ class AskQuestionView(LoginRequiredMixin, CreateView):
 
 class QuestionDetailView(DetailView):
     model = Question
-    context_object_name = 'question'
+    context_object_name = "question"
+    template_name = 'question_detail.html'
 
     ACCEPT_FORM = AnswerAcceptanceForm(initial={'accepted': True})
     REJECT_FORM = AnswerAcceptanceForm(initial={'accepted': False})
@@ -61,6 +62,7 @@ class QuestionDetailView(DetailView):
             context.update(
                 {'accept_form': self.ACCEPT_FORM, 'reject_form': self.REJECT_FORM}
             )
+            return context
         else:
             return context
 

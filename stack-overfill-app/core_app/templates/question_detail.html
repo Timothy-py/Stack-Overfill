@@ -5,11 +5,11 @@
 {% endblock title %}
 
 {% block body %}
-    {% include "core_app/common/display_question.html" %}
-    {% include "core_app/common/question_answers.html" %}
+    {% include "common/display_question.html" %}
+    {% include "common/question_answers.html" %}
 
     {% if user.is_authenticated %}
-        {% include "core_app/common/question_post_answer.html" %}
+        {% include "common/post_answer.html" %}
     {% else %}
         <div>
             Login to post answers.
