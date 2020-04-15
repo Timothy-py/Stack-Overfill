@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import AskQuestionView, QuestionDetailView, CreateAnswerView, UpdateAnswerAcceptance, DailyQuestionList, HomePageView
+from .views import AskQuestionView, QuestionDetailView, CreateAnswerView, UpdateAnswerAcceptance, DailyQuestionList, HomePageView, TodaysQuestionList
 
 app_name = 'core_app'
 
@@ -9,5 +9,6 @@ urlpatterns = [
     path('question/<int:pk>', QuestionDetailView.as_view(), name='question_detail'),
     path('question/<int:pk>/answer', CreateAnswerView.as_view(), name='answer_question'),
     path('answer/<int:pk>/accept', UpdateAnswerAcceptance.as_view(), name='update_answer_acceptance'),
-    path('daily/<int:year>/<int:month>/<int:day>/', DailyQuestionList.as_view(), name='daily_questions')
+    path('daily/<int:year>/<int:month>/<int:day>/', DailyQuestionList.as_view(), name='daily_questions'),
+    path('today', TodaysQuestionList.as_view(), name='today_questions'),
 ]

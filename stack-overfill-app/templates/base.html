@@ -11,13 +11,13 @@
 </head>
 <body>
         <nav>
-            <a href="">Stack Overfill</a>
+            <a href="{% url 'core_app:home_page' %}">Stack Overfill</a>
             <ul>
                 <li>
                     <a href="{% url 'core_app:ask_question' %}">Ask</a>
                 </li>
                 <li>
-                    <a href="{% url 'core_app:home_page' %}">Today's Questions</a>
+                    <a href="{% url 'core_app:today_questions' %}">Today's Questions</a>
                 </li>
                 {% if user.is_authenticated %}
                     <li>

@@ -32,5 +32,8 @@ class Answer(models.Model):
     question = models.ForeignKey(to=Question, on_delete=models.CASCADE)
     accepted = models.BooleanField(default=False)
 
+    def __str__(self):
+        return f"{self.question.title} - Answer"
+
     class Meta:
         ordering = ('-created',)     # descending order, to ensure that the newest answers be listed first
