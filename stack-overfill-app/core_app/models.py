@@ -24,6 +24,20 @@ class Question(models.Model):
     def can_accept_answers(self, user):     # ***
         return user == self.user
 
+    # turns each model object into a dictionary that is suitable for loading into Elasticsearch.
+    def as_elasticsearch_dict(self):
+        return {
+            # custom fields required by elasticsearch.
+            '_id': self.id,
+            '_type': 'doc',
+            'text': f"{self.title}\n{self.question}",
+
+            'question_body': self.question,
+            'title': self.title,
+            'id': self.id,
+            'created': self.created
+        }
+
 
 class Answer(models.Model):
     answer = models.TextField()
