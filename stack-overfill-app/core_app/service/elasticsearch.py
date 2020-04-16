@@ -14,7 +14,6 @@ def get_client():
     return Elasticsearch(hosts=[{'host': settings.ES_HOST, 'port': settings.ES_PORT}])
 
 
-#
 def bulk_load(questions):
     all_ok = True
     es_questions = (q.as_elasticsearch_dict() for q in questions)
@@ -31,3 +30,16 @@ def bulk_load(questions):
             logger.error(FAILED_TO_LOAD_ERROR.format(result['_id'], result))
 
     return all_ok
+
+
+# a function for querying the elasticsearch with a given query parameter
+def search_for_questions(query):
+    client = get_client()
+    result = client.search(index=settings.ES_INDEX, body={
+        'query': {
+            'match': {
+                'text': query
+            }
+        }
+    })
+    return (obj['_source'] for obj in result['hits']['hits'])
