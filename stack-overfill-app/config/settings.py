@@ -134,3 +134,9 @@ CRISPY_TEMPLATE_PACK = 'bootstrap4'     # tells crispy to use Bootstrap4 templat
 LOGIN_URL = 'user_app:login'
 LOGIN_REDIRECT_URL = 'core_app:home_page'
 LOGOUT_REDIRECT_URL = 'core_app:home_page'
+
+
+# Elastic Search Configuration
+ES_INDEX = 'stack_overfill'
+ES_HOST = 'localhost'
+ES_PORT = '9200'

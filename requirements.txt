@@ -1,10 +1,16 @@
 asgiref==3.2.7
 beautifulsoup4==4.9.0
+bleach==3.1.4
 Django==3.0.5
 django-crispy-forms==1.9.0
+django-markdownify==0.8.0
+elasticsearch==7.6.0
+Markdown==3.2.1
 markdownify==0.4.1
 psycopg2==2.8.4
 pytz==2019.3
 six==1.14.0
 soupsieve==2.0
 sqlparse==0.3.1
+urllib3==1.25.8
+webencodings==0.5.1
