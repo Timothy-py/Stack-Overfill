@@ -2,6 +2,9 @@
 
 {% load markdownify %}
 
+{% block searchform %}
+{% endblock searchform %}
+
 {% block body %}
     <h2>Search</h2>
     <form method="get">
@@ -16,7 +19,7 @@
             <li>
                 <a href="{% url 'core_app:question_detail' pk=hit.id %}">{{hit.title}}</a>
                 <div>
-                    {{hit.question_body|markdownify|truncatewords_html:20
+                    {{hit.question_body|truncatewords_html:20}}
                 </div>
             </li>
     {% empty %}
