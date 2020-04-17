@@ -6,6 +6,7 @@ from django.shortcuts import reverse
 
 from .models import Question, Answer
 from .forms import QuestionForm, AnswerForm, AnswerAcceptanceForm
+from .service.elasticsearch import search_for_questions
 
 # Create your views here.
 
@@ -132,3 +133,15 @@ class TodaysQuestionList(RedirectView):
                 'year': today.year,
             }
         )
+
+
+class SearchView(TemplateView):
+    template_name = 'search.html'
+
+    def get_context_data(self, **kwargs):
+        query = self.request.GET.get('q', None)
+        context = super().get_context_data(query=query, **kwargs)
+        if query:
+            results = search_for_questions(query)
+            context['hits'] = results
+        return context

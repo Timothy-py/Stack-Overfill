@@ -30,6 +30,12 @@
                     <li>
                         <a href="{% url 'user_app:register' %}">Register</a>
                     </li>
+                    <li>
+                        <form action="{% url 'core_app:question_search' %}" method="get">
+                            <input type="search" name="q" placeholder="search">
+                            <button type="submit">Search</button>
+                        </form>
+                    </li>
                 {% endif %}
             </ul>
         </nav>
