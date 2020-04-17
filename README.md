@@ -47,15 +47,15 @@ _python manage.py makemigrations_
 _python manage.py migrate_
 
 ### Create a Superuser
-* Run the command
+* Run the command  
 _python manage.py createsuperuser_
 
 ### Load Database into Elasticsearch
-* Run the command
+* Run the command  
 _python manage.py load_questions_into_elasticsearch_
 
 ### Start the django server
-* Run the command
+* Run the command  
 _python manage.py runserver_
 
 ### Go to your browser to interact with the app
