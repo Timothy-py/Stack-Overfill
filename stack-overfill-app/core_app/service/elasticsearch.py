@@ -14,6 +14,7 @@ def get_client():
     return Elasticsearch(hosts=[{'host': settings.ES_HOST, 'port': settings.ES_PORT}])
 
 
+# a function to bulk load existing question models into the ES.
 def bulk_load(questions):
     all_ok = True
     es_questions = (q.as_elasticsearch_dict() for q in questions)
@@ -45,6 +46,7 @@ def search_for_questions(query):
     return (obj['_source'] for obj in result['hits']['hits'])
 
 
+# a function to update the ES with a particular question model.
 def upsert(question_model):
     client = get_client()
     question_dict = question_model.as_elasticsearch_dict()
